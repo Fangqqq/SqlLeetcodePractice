@@ -1,0 +1,42 @@
+https://leetcode.cn/problems/tree-node/
+
+
+
+//根节点：如果这个节点是整棵树的根，即没有父节点。
+select id,'Root' as Type
+from tree
+where p_id is null
+
+union
+//叶子节点：如果这个节点没有任何孩子节点。
+select id,'Leaf' as Type
+from tree
+where id not in
+(select p_id
+from tree 
+where p_id is not null)
+and p_id is not null
+
+union
+//内部节点：如果这个节点既不是叶子节点也不是根节点。
+select id,'Inner' as Type
+from tree
+where p_id is not null and
+id in (select p_id
+from tree 
+where p_id is not null)
+
+order by id
+
+
+-------------------------------
+
+
+select id, 
+    case 
+        when  id = (select id from tree where p_id is null) then 'Root' 
+        when id in (select p_id from tree) then 'Inner'
+        else 'Leaf'
+    end as Type
+from tree
+order by id
