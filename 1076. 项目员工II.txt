@@ -1,0 +1,13 @@
+https://leetcode.cn/problems/project-employees-ii/
+
+
+select project_id
+from Project
+group by project_id
+having count(employee_id)=
+(select count(employee_id) as num
+from Project
+group by project_id
+order by num desc
+limit 1
+)

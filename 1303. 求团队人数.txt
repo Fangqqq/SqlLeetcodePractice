@@ -1,0 +1,9 @@
+https://leetcode.cn/problems/find-the-team-size/
+
+
+
+select employee_id,count_size as team_size 
+from Employee e,(select team_id,count(employee_id) as count_size 
+                from Employee
+                group by team_id ) as t
+where e.team_id=t.team_id
