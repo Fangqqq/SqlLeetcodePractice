@@ -1,0 +1,12 @@
+https://leetcode.cn/problems/customer-who-visited-but-did-not-make-any-transactions/
+
+
+select a.id as customer_id,count(num) as count_no_trans
+from 
+(select v.customer_id as id ,ifnull(t.transaction_id,-1) as num
+from Visits v
+left join Transactions t 
+on v.visit_id =t.visit_id 
+where t.amount is null
+order by v.customer_id) as a
+group by id
