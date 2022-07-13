@@ -1,0 +1,6 @@
+https://leetcode.cn/problems/rising-temperature/
+
+
+select b.id
+from Weather a,Weather b
+where dateDiff(b.RecordDate,a.RecordDate) = 1  and b.Temperature >a.Temperature 
