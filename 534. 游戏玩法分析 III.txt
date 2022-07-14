@@ -1,0 +1,9 @@
+
+https://leetcode.cn/problems/game-play-analysis-iii/
+
+select b.player_id ,b. event_date,sum(a.games_played) as games_played_so_far
+from Activity a,Activity b
+where  a. player_id=b. player_id
+and b.event_date >=a.event_date 
+group by b.player_id ,b.event_date
+order by b.player_id,b.event_date

@@ -1,0 +1,10 @@
+
+https://leetcode.cn/problems/managers-with-at-least-5-direct-reports/
+
+select name
+from Employee
+where id in
+    (select managerId
+    from Employee
+    group by managerId
+    having count(managerId)>=5)
