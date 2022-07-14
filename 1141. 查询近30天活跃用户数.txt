@@ -2,3 +2,12 @@ select activity_date as day ,count(distinct(user_id)) as active_users
 from Activity 
 where activity_date between '2019-06-28' and '2019-07-27'
 group by activity_date
+
+-----------------------------
+
+select activity_date as day ,count(distinct(user_id)) as active_users
+from Activity 
+where datediff('2019-07-27',activity_date)<30 and DATEDIFF("2019-07-27", activity_date) >= 0
+group by activity_date
+
+//数据中可能还有大于 7.27 号的数据，第十三组测试样例就有 2019-8-25 的数据，所以还要保证日期差大于等于0
