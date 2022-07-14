@@ -1,0 +1,6 @@
+https://leetcode.cn/problems/consecutive-available-seats/
+
+select  distinct a.seat_id
+from Cinema a,Cinema b
+where a.free=1 and b.free=1 and abs(b.seat_id-a.seat_id)=1
+order by a.seat_id 
