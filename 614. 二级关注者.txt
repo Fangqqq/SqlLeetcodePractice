@@ -1,0 +1,7 @@
+https://leetcode.cn/problems/second-degree-follower/
+
+
+select  b.followee as follower , count(distinct b.followee, b.follower) as num   
+from follow a,follow b 
+where a.follower =b.followee 
+group by a.follower

@@ -1,0 +1,9 @@
+https://leetcode.cn/problems/winning-candidate/
+
+
+select Candidate.name as name
+from Vote left join Candidate
+on Vote.candidateId=Candidate.id
+group by candidateId
+order by count(candidateId) desc
+limit 1

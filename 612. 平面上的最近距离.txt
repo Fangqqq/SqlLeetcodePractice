@@ -1,0 +1,6 @@
+
+https://leetcode.cn/problems/shortest-distance-in-a-plane/
+
+select round(min(sqrt(pow((b.x-a.x),2)+pow((b.y-a.y),2))),2) as shortest
+from Point2D a ,Point2D b
+where a.x!=b.x or a.y!=b.y

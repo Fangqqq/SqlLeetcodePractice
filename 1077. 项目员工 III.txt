@@ -1,0 +1,12 @@
+https://leetcode.cn/problems/project-employees-iii/
+
+
+
+select a.project_id,b.employee_id
+from Project a,Employee b 
+where a.employee_id = b.employee_id
+and (a.project_id,b.experience_years) in 
+(select p.project_id ,max(e.experience_years)
+from Project p,Employee e
+where e.employee_id = p.employee_id
+group by p.project_id)
