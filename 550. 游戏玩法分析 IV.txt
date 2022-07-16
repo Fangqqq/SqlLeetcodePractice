@@ -1,0 +1,8 @@
+https://leetcode.cn/problems/game-play-analysis-iv/
+
+
+select round(count(a.player_id)/count(b.player_id),2) as fraction
+from Activity a right join (select player_id,min(event_date ) as event_date 
+                            from Activity
+                            group by player_id) as b 
+on a.player_id=b.player_id and a.event_date-b.event_date=1
