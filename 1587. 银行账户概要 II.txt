@@ -1,0 +1,8 @@
+https://leetcode.cn/problems/bank-account-summary-ii/
+
+select u.name, a.num as balance 
+from Users u right join(select account,sum(amount) as num 
+from Transactions
+group by account
+having num>10000) as a
+on u.account=a.account
