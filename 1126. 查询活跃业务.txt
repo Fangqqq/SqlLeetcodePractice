@@ -1,0 +1,10 @@
+https://leetcode.cn/problems/active-businesses/
+
+
+select  e.business_id as business_id
+from Events e,(select event_type,avg(occurences) as avgnum
+                from Events
+                group by event_type) as b
+where e.event_type=b.event_type and e.occurences>b.avgnum
+group by e.business_id
+having count(e.business_id)>=2
