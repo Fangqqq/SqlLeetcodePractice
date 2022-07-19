@@ -1,0 +1,8 @@
+https://leetcode.cn/problems/customers-who-bought-products-a-and-b-but-not-c/
+
+
+select o.customer_id as customer_id ,c.customer_name as customer_name
+from Orders o,Customers c 
+where o.customer_id=c.customer_id
+group by c.customer_id
+having sum(product_name ='A')>0 and sum(product_name='B')>0 and sum(product_name='C')=0
