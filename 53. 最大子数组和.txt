@@ -1,0 +1,58 @@
+https://leetcode.cn/problems/maximum-subarray/
+
+
+方法一：暴力求解（超时）
+双重遍历寻找所有可能的子序和，求得其中最大值
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+         int num=INT_MIN;
+         for(int i=0;i<nums.size();i++){
+            int tmpnum=0;
+             for(int j=i;j<nums.size();j++){
+                 tmpnum+=nums[j];
+                 num=tmpnum>num? tmpnum:num;
+             }
+         }
+         return num;  
+    }
+};
+------------------------------
+
+方法二：动态规划
+dp[i]表示nums中以nums[i]结尾的最大子序和
+dp[i]=max(dp[i-1]+nums[i],nums[i])
+dp[i]不是当前数字，就是与前面的最大子序和的和
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        vector<int> dp(nums.size());
+        dp[0]=nums[0];
+        int result=dp[0];
+        for(int i=1;i<nums.size();i++){
+            dp[i]=max(dp[i-1]+nums[i],nums[i]);
+            result=max(dp[i],result);
+        }
+        return result;
+    }
+};
+
+------------------------------
+方法三：贪心法
+从左往右迭代，一个个数字过去如果sum<0,重新开始找子序串
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+         int num=INT_MIN;
+         int sum=0;
+         for(int i=0;i<nums.size();i++){
+             sum+=nums[i];
+             num=max(num,sum);
+             if(sum<0){
+                 sum=0;
+             }
+         }
+         return num;  
+    }
+};

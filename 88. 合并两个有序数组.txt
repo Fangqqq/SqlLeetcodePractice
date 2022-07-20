@@ -1,0 +1,43 @@
+https://leetcode.cn/problems/merge-sorted-array/
+
+
+
+方法一：直接合并后排序
+
+先将数组 nums 2放进数组 nums 1的尾部，然后直接对整个数组进行排序。
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        for(int i=0;i<nums2.size();i++){
+            nums1[m+i]=nums2[i];
+        }
+        sort(nums1.begin(),nums1.end());
+    }
+};
+-------------------------------
+方法一没有利用数组nums 1与 nums 2已经被排序的性质。为了利用这一性质，我们可以使用双指针方法。这一方法将两个数组看作队列，每次从两个数组头部取出比较小的数字放到结果中。
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int nums3[m+n];
+        int p1=0,p2=0;
+        int i=0;
+        while(p1<m && p2<n){
+            if(nums1[p1]<=nums2[p2]){
+                nums3[i++]=nums1[p1++];
+            }else{
+                nums3[i++]=nums2[p2++];
+            }
+        }
+        while(p1<m){
+            nums3[i++]=nums1[p1++];
+        }
+        while(p2<n){
+            nums3[i++]=nums2[p2++];
+        }
+        for(int j=0;j<m+n;j++){
+            nums1[j]=nums3[j];
+        }
+    }
+};
