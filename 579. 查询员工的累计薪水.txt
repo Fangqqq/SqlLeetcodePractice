@@ -1,0 +1,12 @@
+https://leetcode.cn/problems/find-cumulative-salary-of-an-employee/
+
+
+select  e1.id as id,e1.Month as month ,sum(e2.Salary) Salary
+from Employee e1,Employee e2
+where e1.id=e2.id and (e1.id,e1.month) not in 
+	(select id,max(Month)
+	from Employee
+	group by id) 
+and e1.Month-e2.Month between 0 and 2
+group by e1.id,e1.Month
+order by e1.id,e1.Month desc
