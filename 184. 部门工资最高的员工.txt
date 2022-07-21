@@ -1,0 +1,10 @@
+https://leetcode.cn/problems/department-highest-salary/
+
+
+select  d.name as Department,e.name as Employee,e.Salary
+from Employee e , Department d
+where  (e.departmentID,e.salary) in
+        (select departmentId,max(salary)
+        from Employee e 
+        group by departmentId) 
+and e.departmentId =d.id
