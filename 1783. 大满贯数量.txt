@@ -1,0 +1,8 @@
+https://leetcode.cn/problems/grand-slam-titles/
+
+
+select p.player_id,p.player_name,
+sum(c.Wimbledon=p.player_id)+sum(c.Fr_open=p.player_id)+sum(c.US_open=p.player_id)+sum(c.Au_open=p.player_id) as grand_slams_count
+from Championships c  join Players p  
+group by p.player_id,player_name
+having grand_slams_count>0
