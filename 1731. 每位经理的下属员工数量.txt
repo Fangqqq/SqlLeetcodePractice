@@ -1,0 +1,8 @@
+https://leetcode.cn/problems/the-number-of-employees-which-report-to-each-employee/
+
+
+select e2.employee_id as employee_id ,e2.name as name  ,count(*) as reports_count,round(avg(e1.age),0) as average_age 
+from Employees e1 , Employees e2
+where e1.reports_to=e2.employee_id
+group by e2. employee_id 
+order by employee_id 

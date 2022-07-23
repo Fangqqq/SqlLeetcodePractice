@@ -1,0 +1,7 @@
+https://leetcode.cn/problems/leetflex-banned-accounts/
+
+
+
+select distinct i1.account_id as account_id 
+from LogInfo i1,LogInfo i2
+where i1.account_id=i2.account_id and i1.ip_address !=i2.ip_address and i1.login between i2.login and i2.logout  
