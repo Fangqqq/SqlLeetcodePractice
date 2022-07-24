@@ -1,0 +1,9 @@
+https://leetcode.cn/problems/consecutive-numbers/
+
+
+
+select distinct a.Num as ConsecutiveNums
+from Logs a,Logs b
+where a.Num=b.Num and b.id-a.id<3 and b.id-a.id>=0
+group by a.id
+having count(*)>=3
