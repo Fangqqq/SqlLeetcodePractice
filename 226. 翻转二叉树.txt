@@ -1,0 +1,20 @@
+
+方法：递归
+
+递归二叉树，左右子树分别进行反转后交换，结点为空时返回NULL
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root==nullptr){
+            return nullptr;
+        }
+        TreeNode* leftnode=root->left;
+        TreeNode* rightnode=root->right;
+
+        root->right=invertTree(leftnode);
+        root->left=invertTree(rightnode);
+
+        return root;
+    }
+};
