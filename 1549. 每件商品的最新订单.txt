@@ -1,0 +1,12 @@
+https://leetcode.cn/problems/the-most-recent-orders-for-each-product/
+
+
+
+select p.product_name ,p.product_id,a.order_id,a.order_date
+from Products p right join 
+    (select order_id,order_date,product_id from Orders where 
+    (product_id,order_date) in 
+        (select product_id,max(order_date) from Orders group by product_id )
+    ) as a
+on a.product_id=p.product_id
+order by p.product_name,p.product_id,a.order_id

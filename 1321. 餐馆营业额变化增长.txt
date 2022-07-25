@@ -1,0 +1,14 @@
+https://leetcode.cn/problems/restaurant-growth/
+
+
+select a.visited_on as visited_on,sum(b.amount2) as amount,round(avg(b.amount2),2) as average_amount
+from (select visited_on,sum(amount) as amount1
+    from Customer
+    group by visited_on) a,
+    (select visited_on,sum(amount) as amount2
+    from Customer
+    group by visited_on) b 
+where datediff(a.visited_on,b.visited_on)<=6  and a.visited_on>=b.visited_on 
+group by  a.visited_on
+having count(*)=7
+order by visited_on
