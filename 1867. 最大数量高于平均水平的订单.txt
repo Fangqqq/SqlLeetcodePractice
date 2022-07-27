@@ -1,0 +1,8 @@
+不平衡订单的订单最大数量严格大于每个订单（包括订单本身）的平均数量，意思就是指订单中的最大数量需要大于所有订单的平均值中的最大值
+https://leetcode.cn/problems/orders-with-maximum-quantity-above-average/
+
+
+SELECT order_id 
+FROM OrdersDetails 
+GROUP BY order_id
+HAVING max(quantity) >  ALL (SELECT AVG(quantity) FROM OrdersDetails GROUP BY order_id)
